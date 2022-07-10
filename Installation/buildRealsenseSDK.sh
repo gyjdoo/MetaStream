@@ -13,16 +13,19 @@ sudo apt-get update
 sudo apt-get install librealsense2-utils librealsense2-dev -y
 git clone https://github.com/IntelRealSense/librealsense.git
 echo "${GREEN}Begin to install dependencies of Realsense SDK.."
+read -r -p"Any key to continue";echo
 sudo apt-get install git libssl-dev libusb-1.0-0-dev libudev-dev pkg-config libgtk-3-dev libglfw3-dev libglfw3 libgl1-mesa-dev libglu1-mesa-dev libsdl2-dev libxinerama-dev libudev-dev -y
 echo "${BLUE}Begin to build Realsense SDK from scourse..."
+read -r -p"Any key to continue";echo
 cd librealsense
 ./scripts/setup_udev_rules.sh
+read -r -p"Any key to continue";echo
 mkdir build && cd build
 cmake ../ -DCMAKE_BUILD_TYPE=release -DBUILD_EXAMPLES=true -DBUILD_GRAPHICAL_EXAMPLES=true -DBUILD_NETWORK_DEVICE=ON
 make -j3
 sudo make install
-cp ~/JetsonRelated/runServer.sh ~/
-cp ~/JetsonRelated/runFan.sh ~/
 cd ~
-sudo chmod +x runServer.sh
-sudo chmod +x runFan.sh
+sudo chmod +x ~/MetaStream/Installation/runServer.sh
+sudo chmod +x ~/MetaStream/Installation/runFan.sh
+cp ~/MetaStream/Installation/runServer.sh ~/
+cp ~/MetaStream/Installation/runFan.sh ~/
